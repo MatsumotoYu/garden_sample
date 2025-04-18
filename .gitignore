@@ -1,2 +1,5 @@
-*.db
-data/uploads/*
+venv/
+.streamlit/secrets.toml
+*.pyc
+__pycache__/
+data/uploads/
