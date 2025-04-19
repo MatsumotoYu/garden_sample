@@ -6,11 +6,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import streamlit as st
 from supabase import create_client
-from src.components.auth import signup, login, logout
+from src.components.auth import signup, login, logout  # authenticate, get_user_id を修正
 from src.components.advice import get_advice
 from src.components.stores import get_stores
 from src.components.posts import create_post, get_posts, like_post
-
 # スタイルの読み込み
 with open("src/style.css") as f:
     css = f.read()
