@@ -1,13 +1,11 @@
 # src/components/auth.py
 from supabase import Client
-
-
-from supabase import create_client
-
+import streamlit as st
 
 def signup(supabase: Client, email: str, password: str):
     try:
         response = supabase.auth.sign_up({"email": email, "password": password})
+        supabase.auth.set_session(response.session.access_token, response.session.refresh_token)  # セッションを設定
         return response.user
     except Exception as e:
         st.error(f"サインアップエラー: {str(e)}")
@@ -16,6 +14,7 @@ def signup(supabase: Client, email: str, password: str):
 def login(supabase: Client, email: str, password: str):
     try:
         response = supabase.auth.sign_in_with_password({"email": email, "password": password})
+        supabase.auth.set_session(response.session.access_token, response.session.refresh_token)  # セッションを設定
         return response.user
     except Exception as e:
         st.error(f"ログインエラー: {str(e)}")
